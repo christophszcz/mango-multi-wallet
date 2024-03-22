@@ -5,7 +5,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-// import { CoinData } from '../interfaces/coin-data';
+import { CoinData } from '../interfaces/coin-data';
 // import { TotalTableComponent } from '../total-table/total-table.component';
 
 const COINS: string[] = [
@@ -19,22 +19,28 @@ const COINS: string[] = [
   templateUrl: './coin-table.component.html',
   styleUrls: ['./coin-table.component.scss'],
   standalone: true,
-  imports: [TotalTableComponent, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule]
+  imports: [
+    // TotalTableComponent, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule]
 })
 export class CoinTableComponent implements AfterViewInit {
-  static currentAgPrice: number = 30;
+  static currentBTCPrice: number = 60000;
   static purchasePriceArray: number[] = [];
   static currentValuePriceArray: number[] = [];
 
   totalPurchasePrice: number = 0;
   totalCurrentValue: number = 0;
 
-  displayedColumns: string[] = ['amount', 'name', 'year', 'unitPrice', 'purchasePrice','currentValue'];
+  displayedColumns: string[] = ['amount', 'name', 'unitPrice', 'purchasePrice','currentValue'];
 
   dataSource: MatTableDataSource<CoinData>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
     // Create 5 coins
@@ -45,8 +51,8 @@ export class CoinTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
 
     this.calculateTotalPurchaseAndCurrentPrice();
   }
@@ -78,7 +84,7 @@ export class CoinTableComponent implements AfterViewInit {
     const amount = Math.round(Math.random() * 100);
     const unitPrice = Math.round(Math.random() * 10000) / 100;
   
-    const currentValue = amount * this.currentAgPrice;
+    const currentValue = amount * this.currentBTCPrice;
     CoinTableComponent.currentValuePriceArray.push(currentValue);
 
     const purchasePriceRaw = amount * unitPrice;
@@ -87,7 +93,6 @@ export class CoinTableComponent implements AfterViewInit {
 
     return {
       name: name,
-      year: 2010 + Number(Math.round(Math.random() * 10)),
       amount: amount,
       unitPrice: unitPrice,
       purchasePrice: purchasePrice,
