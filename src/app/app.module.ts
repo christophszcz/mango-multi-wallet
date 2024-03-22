@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CoinTableComponent } from './coin-table/coin-table.component';
 
 @NgModule({
@@ -14,8 +13,7 @@ import { CoinTableComponent } from './coin-table/coin-table.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MatSlideToggleModule
+    AppRoutingModule
   ],
   providers: [
     provideAnimationsAsync()
