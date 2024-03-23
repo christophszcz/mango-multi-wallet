@@ -6,7 +6,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { CoinData } from '../interfaces/coin-data';
-// import { TotalTableComponent } from '../total-table/total-table.component';
+import { TotalTableComponent } from '../total-table/total-table.component';
 
 const COINS: string[] = [
   'Bitcoin',
@@ -20,7 +20,7 @@ const COINS: string[] = [
   styleUrls: ['./coin-table.component.scss'],
   standalone: true,
   imports: [
-    // TotalTableComponent, 
+    TotalTableComponent, 
     MatFormFieldModule, 
     MatInputModule, 
     MatTableModule,
@@ -39,8 +39,8 @@ export class CoinTableComponent implements AfterViewInit {
 
   dataSource: MatTableDataSource<CoinData>;
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
     // Create 5 coins
@@ -51,8 +51,8 @@ export class CoinTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
     this.calculateTotalPurchaseAndCurrentPrice();
   }
