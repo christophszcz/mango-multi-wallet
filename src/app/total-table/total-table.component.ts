@@ -15,8 +15,8 @@ const ELEMENT_DATA: Total[] = [
   imports: [MatTableModule]
 })
 export class TotalTableComponent {
-  @Input() totalPurchasePrice: number;
-  @Input() totalCurrentValue: number;
+  @Input() totalPurchasePrice?: number;
+  @Input() totalCurrentValue?: number;
 
   displayedColumns: string[] = ['total', 'amount'];
   dataSource = ELEMENT_DATA;
